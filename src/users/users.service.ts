@@ -14,8 +14,8 @@ export class UsersService {
     return this.prismaService.user.findMany({});
   }
 
-  findOne(id: string) {
-    return this.prismaService.user.findUnique({where : {id}}) ;
+  findOne(phoneNumber: string) { //searchs based on user's phone number, it's unique
+    return this.prismaService.user.findUnique({where : {phoneNumber}}) ;
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
