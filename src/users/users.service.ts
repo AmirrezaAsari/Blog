@@ -22,7 +22,7 @@ export class UsersService {
     return this.prismaService.user.update({data : updateUserDto, where : {phoneNumber}});
   }
 
-  remove(id: string) {
-    return this.prismaService.user.delete({where : {id}});
+  remove(phoneNumber: string) {
+    return this.prismaService.user.delete({where : {phoneNumber}});
   }
 }

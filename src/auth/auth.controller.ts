@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Patch, Post, Req, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Patch, Post, Req, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignInDto } from './dto/signIn.dto';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
@@ -34,5 +34,12 @@ export class AuthController {
     editProfile(@Request() req, @Body() updateUserDto : UpdateUserDto){
         const phoneNumber = req.user.username;
         return this.authService.updateProfile(phoneNumber, updateUserDto);
+    }
+
+    @UseGuards(AuthGaurd)
+    @Delete("profile")
+    deleteProfile(@Request() req){
+        const phoneNumber = req.user.username;
+        return this.authService.deleteAccount(phoneNumber);
     }
 }

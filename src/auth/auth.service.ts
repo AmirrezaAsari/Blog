@@ -37,4 +37,8 @@ export class AuthService {
         return this.userService.update(phoneNumber, updateUserDto);
     }
 
+    async deleteAccount(phoneNumber:string){
+        return this.userService.remove(phoneNumber);
+    }
+
 }
