@@ -4,6 +4,7 @@ import { SignInDto } from './dto/signIn.dto';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthGaurd } from './auth.gaurd';
 import { IsPhoneNumber } from 'class-validator';
+import { UpdateUserDto } from 'src/users/dto/update-user.dto';
 
 
 @Controller('auth')
@@ -28,4 +29,10 @@ export class AuthController {
         return this.authService.profile(phoneNumber);
     }
 
+    @UseGuards(AuthGaurd)
+    @Patch("profile/edit")
+    editProfile(@Request() req, @Body() updateUserDto : UpdateUserDto){
+        const phoneNumber = req.user.username;
+        return this.authService.updateProfile(phoneNumber, updateUserDto);
+    }
 }

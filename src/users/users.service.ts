@@ -18,8 +18,8 @@ export class UsersService {
     return this.prismaService.user.findUnique({where : {phoneNumber}}) ;
   }
 
-  update(id: string, updateUserDto: UpdateUserDto) {
-    return this.prismaService.user.update({data : updateUserDto, where : {id}});
+  update(phoneNumber: string, updateUserDto: UpdateUserDto) {
+    return this.prismaService.user.update({data : updateUserDto, where : {phoneNumber}});
   }
 
   remove(id: string) {
