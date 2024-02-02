@@ -1,8 +1,9 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Req, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Patch, Post, Req, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignInDto } from './dto/signIn.dto';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthGaurd } from './auth.gaurd';
+import { IsPhoneNumber } from 'class-validator';
 
 
 @Controller('auth')
@@ -23,6 +24,8 @@ export class AuthController {
     @UseGuards(AuthGaurd)
     @Get("profile")
     getProfile(@Request() req){
-        return req.user;
-    } 
+        const phoneNumber = req.user.username;
+        return this.authService.profile(phoneNumber);
+    }
+
 }

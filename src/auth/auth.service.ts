@@ -28,4 +28,8 @@ export class AuthService {
 
     }
 
+    async profile(phoneNumber:string){
+        return this.userService.findOne(phoneNumber);
+    }
+
 }
